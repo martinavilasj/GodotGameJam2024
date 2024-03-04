@@ -1,0 +1,134 @@
+[gd_scene load_steps=11 format=3 uid="uid://wyohaqgdmodq"]
+
+[ext_resource type="FontFile" uid="uid://c8bbqk04fsqoc" path="res://assets/fonts/ka1.ttf" id="1_mrmkf"]
+[ext_resource type="Script" path="res://scripts/mainmenu.gd" id="1_rq5sb"]
+[ext_resource type="FontFile" uid="uid://dhnvtdywj2rrk" path="res://assets/fonts/PressStart2P-Regular.ttf" id="2_v226x"]
+[ext_resource type="AudioStream" uid="uid://cdx520k8qgmim" path="res://sounds/background/menu.mp3" id="4_r3aeq"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_l13e2"]
+font = ExtResource("1_mrmkf")
+font_size = 106
+font_color = Color(0.956863, 0.968627, 1, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_oa3ks"]
+font = ExtResource("2_v226x")
+font_size = 41
+font_color = Color(0.72549, 0.690196, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_com73"]
+font = ExtResource("2_v226x")
+font_size = 26
+
+[sub_resource type="Animation" id="Animation_iqbx7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("insert_coin:label_settings:font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.72549, 0.690196, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_82r1c"]
+resource_name = "text_animation"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("insert_coin:label_settings:font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Color(1, 1, 1, 1), Color(0.14902, 0.14902, 0.14902, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jawcr"]
+_data = {
+"RESET": SubResource("Animation_iqbx7"),
+"text_animation": SubResource("Animation_82r1c")
+}
+
+[node name="mainmenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rq5sb")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.14902, 0.14902, 0.14902, 1)
+
+[node name="title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -428.0
+offset_top = -212.0
+offset_right = 428.0
+offset_bottom = -93.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "SNOW ROBOT"
+label_settings = SubResource("LabelSettings_l13e2")
+
+[node name="insert_coin" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -225.5
+offset_top = -173.0
+offset_right = 225.5
+offset_bottom = -132.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "INSERT COIN"
+label_settings = SubResource("LabelSettings_oa3ks")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -55.5
+offset_top = -92.0
+offset_right = 55.5
+offset_bottom = -69.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "(PRESS ENTER)"
+label_settings = SubResource("LabelSettings_com73")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_jawcr")
+}
+speed_scale = 0.4
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_r3aeq")
+autoplay = true

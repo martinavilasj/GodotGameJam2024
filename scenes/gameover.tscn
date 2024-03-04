@@ -1,0 +1,129 @@
+[gd_scene load_steps=9 format=3 uid="uid://dgm464y8cnwo0"]
+
+[ext_resource type="FontFile" uid="uid://dhnvtdywj2rrk" path="res://assets/fonts/PressStart2P-Regular.ttf" id="1_i8k2l"]
+[ext_resource type="Script" path="res://scripts/gameover.gd" id="1_lkfj1"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_xgeav"]
+font = ExtResource("1_i8k2l")
+font_size = 46
+font_color = Color(0.85098, 0.85098, 0.85098, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_tm58r"]
+font = ExtResource("1_i8k2l")
+font_size = 24
+font_color = Color(0.784314, 0.784314, 0.784314, 1)
+
+[sub_resource type="Animation" id="Animation_fmt7k"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("pressanykey:label_settings:font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.784314, 0.784314, 0.784314, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_il2n5"]
+resource_name = "text_press"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("pressanykey:label_settings:font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Color(0.784314, 0.784314, 0.784314, 1), Color(0.12549, 0.12549, 0.12549, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wpyx1"]
+_data = {
+"RESET": SubResource("Animation_fmt7k"),
+"text_press": SubResource("Animation_il2n5")
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_btn3u"]
+font = ExtResource("1_i8k2l")
+font_size = 28
+font_color = Color(0.784314, 0.784314, 0.784314, 1)
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_lkfj1")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.14902, 0.14902, 0.14902, 1)
+
+[node name="gameover_text" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -207.0
+offset_top = -23.0
+offset_right = 207.0
+offset_bottom = 23.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "GAME OVER"
+label_settings = SubResource("LabelSettings_xgeav")
+
+[node name="pressanykey" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -443.0
+offset_top = -63.0
+offset_right = 445.0
+offset_bottom = -39.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "PRESS ANY KEY TO RETURN TO  MAIN MENU"
+label_settings = SubResource("LabelSettings_tm58r")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_wpyx1")
+}
+speed_scale = 0.4
+
+[node name="score" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = 55.0
+offset_right = 20.0
+offset_bottom = 78.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "SCORE: "
+label_settings = SubResource("LabelSettings_btn3u")

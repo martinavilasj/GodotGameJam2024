@@ -1,0 +1,60 @@
+[gd_scene load_steps=10 format=3 uid="uid://dfawaq7k0c6f7"]
+
+[ext_resource type="Script" path="res://scripts/snowball.gd" id="1_mp50p"]
+[ext_resource type="Texture2D" uid="uid://cr04fw554631s" path="res://assets/snowball/snowball_01.png" id="1_onf5g"]
+[ext_resource type="Texture2D" uid="uid://qagqig3la2kv" path="res://assets/snowball/snowball_02.png" id="2_1uxlv"]
+[ext_resource type="Texture2D" uid="uid://d14skynjsgf8m" path="res://assets/snowball/snowball_03.png" id="3_ftqjo"]
+[ext_resource type="Texture2D" uid="uid://bqt283tf1ftp2" path="res://assets/snowball/snowball_04.png" id="4_t6lbw"]
+[ext_resource type="Texture2D" uid="uid://bq1sx0svkaned" path="res://assets/snowball/snowball_05.png" id="5_vo6c4"]
+[ext_resource type="Texture2D" uid="uid://cahsbvyp72so5" path="res://assets/snowball/snowball_06.png" id="6_vbrqt"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2lbub"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_onf5g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_1uxlv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ftqjo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_t6lbw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_vo6c4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_vbrqt")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yqqay"]
+radius = 11.0
+
+[node name="snowball" type="Area2D"]
+rotation = 3.14159
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_mp50p")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+sprite_frames = SubResource("SpriteFrames_2lbub")
+offset = Vector2(120, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-9.53674e-07, 5.96046e-08)
+shape = SubResource("CircleShape2D_yqqay")
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+position = Vector2(-9.53674e-07, 5.96046e-08)
+enable_node_path = NodePath("../CollisionShape2D")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_exited"]
