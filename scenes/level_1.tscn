@@ -1,4 +1,4 @@
-[gd_scene load_steps=85 format=3 uid="uid://bmv5l4vxhbkmh"]
+[gd_scene load_steps=86 format=3 uid="uid://bmv5l4vxhbkmh"]
 
 [ext_resource type="Script" path="res://scripts/level_1.gd" id="1_nxdlk"]
 [ext_resource type="Texture2D" uid="uid://dm4odot3d5wv4" path="res://assets/background/BG.png" id="1_staus"]
@@ -33,6 +33,7 @@
 [ext_resource type="Texture2D" uid="uid://dukkofb13om33" path="res://assets/tilemap/png/Object/Stone.png" id="28_535kw"]
 [ext_resource type="Texture2D" uid="uid://d1shlfiur6u3w" path="res://assets/tilemap/png/Object/Tree_1.png" id="29_po5lo"]
 [ext_resource type="Texture2D" uid="uid://dcqv7pxf3abht" path="res://assets/tilemap/png/Object/Tree_2.png" id="30_o6fbb"]
+[ext_resource type="AudioStream" uid="uid://dlhsajm6b2uyj" path="res://sounds/SFX/pixel-death-66829.mp3" id="35_iatms"]
 [ext_resource type="AudioStream" uid="uid://br8sh2bsr7208" path="res://sounds/background/game.mp3" id="37_u2kgg"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mqke7"]
@@ -484,5 +485,8 @@ position = Vector2(904, 91)
 
 [node name="posicion6" type="Marker2D" parent="posiciones"]
 position = Vector2(490, -121)
+
+[node name="player_death" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("35_iatms")
 
 [connection signal="body_entered" from="delete_zone" to="delete_zone" method="_on_body_entered"]

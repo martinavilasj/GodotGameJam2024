@@ -6,7 +6,6 @@ var velocity: int = 700
 @onready var sprite = $AnimatedSprite2D
 @onready var rotation_ball = sprite.rotation_degrees
 
-
 func _ready() -> void:
 	sprite.play("default")
 	

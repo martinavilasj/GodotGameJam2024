@@ -13,6 +13,8 @@ var snowball_scene = preload("res://scenes/snowball.tscn")
 var enemy_ball_in_area = false
 var enemy
 
+@onready var throw_ball = $throw
+
 func _ready() -> void:
 	pass
 	
@@ -58,6 +60,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func shooting():
+	throw_ball.play()
 	var snowball = snowball_scene.instantiate()
 	if sprite.flip_h:
 		$shoot_position.scale.x = -1

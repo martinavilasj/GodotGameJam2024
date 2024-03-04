@@ -37,6 +37,7 @@ func instantiate_player():
 func reinstantiate_player():
 	if player:
 		player.queue_free()
+		$player_death.play()
 		instantiate_player()
 
 func instantiate_all_enemies() -> void:
@@ -59,3 +60,4 @@ func add_enemy(index: int):
 	enemy.position = positions[index]
 	enemy.map_position = index
 	add_child(enemy)
+	

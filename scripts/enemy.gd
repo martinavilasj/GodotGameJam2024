@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+signal attack_finished
+
 @onready var sprite = $AnimatedSprite2D
 
 @onready var left_sensor = $left_sensor
@@ -39,15 +41,31 @@ var is_shooting = false
 # Index para saber la posicion en la que aparece al principio en el mapa
 var map_position: int
 
+var speed_attack: float = 1.0
+
+@onready var punch_sound = $punch
+
+func _ready() -> void:
+	move_speed = GLOBAL.ENEMY_VELOCITY
+	max_speed = move_speed * 1.5
+	speed_attack = GLOBAL.ENEMY_ATTACK_VELOCITY
+	right_sensor.target_position.x = GLOBAL.ENEMY_VISION
+	left_sensor.target_position.x = -GLOBAL.ENEMY_VISION
+
 func _process(delta: float) -> void:
 	velocity.y += gravity
 	
 	# Verificar estado del enemigo
 	if state == 0: # Estado normal del enemigo
+		#if is_shooting:
+		#	await attack_finished
 		if detect_player():
 			shooting()
 		else:
-			sprite.play("walk")
+			if move_speed >= 250:
+				sprite.play("run")
+			else:
+				sprite.play("walk")
 			detect_precipice()
 			detect_wall()
 			move_enemy()
@@ -102,7 +120,8 @@ func move_enemy() -> void:
 
 func shooting():
 	is_shooting = true
-	sprite.play("attack")
+	sprite.play("attack", speed_attack)
+	print()
 	await sprite.animation_finished
 
 func get_damage():
@@ -126,9 +145,13 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 		
 	snowball.global_position = $shoot_position/Marker2D.global_position	
 	get_parent().add_child(snowball)
+	#attack_finished.emit()
 	is_shooting = false
 
 func delete_enemy():
+	GLOBAL.ENEMY_VELOCITY += 5
+	GLOBAL.ENEMY_ATTACK_VELOCITY += 0.2
+	GLOBAL.ENEMY_VISION += 25
 	get_parent().regenerate_enemy(map_position)
 	queue_free()
 	
@@ -139,6 +162,7 @@ func enemy_deleted_by_ball():
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("enemy"):
 		if body.state == 5:
+			punch_sound.play()
 			GLOBAL.add_points(1500)
 			# Pasar al estado 6 para reproducir animacion muerte
 			state = 6

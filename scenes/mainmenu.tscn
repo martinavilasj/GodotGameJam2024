@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://wyohaqgdmodq"]
+[gd_scene load_steps=12 format=3 uid="uid://wyohaqgdmodq"]
 
 [ext_resource type="FontFile" uid="uid://c8bbqk04fsqoc" path="res://assets/fonts/ka1.ttf" id="1_mrmkf"]
 [ext_resource type="Script" path="res://scripts/mainmenu.gd" id="1_rq5sb"]
 [ext_resource type="FontFile" uid="uid://dhnvtdywj2rrk" path="res://assets/fonts/PressStart2P-Regular.ttf" id="2_v226x"]
 [ext_resource type="AudioStream" uid="uid://cdx520k8qgmim" path="res://sounds/background/menu.mp3" id="4_r3aeq"]
+[ext_resource type="AudioStream" uid="uid://d3dlbjdb370c8" path="res://sounds/SFX/90s-game-ui-6-185099.mp3" id="5_rvq4g"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_l13e2"]
 font = ExtResource("1_mrmkf")
@@ -131,4 +132,9 @@ speed_scale = 0.4
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_r3aeq")
+volume_db = -5.0
 autoplay = true
+stream_paused = true
+
+[node name="start" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_rvq4g")

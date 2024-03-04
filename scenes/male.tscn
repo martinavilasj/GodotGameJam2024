@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://faf6ode6qscj"]
+[gd_scene load_steps=34 format=3 uid="uid://faf6ode6qscj"]
 
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_0nnu4"]
 [ext_resource type="Texture2D" uid="uid://di51hr1vkukg4" path="res://assets/characters/male/character_maleAdventurer_duck.png" id="2_rvcpt"]
@@ -29,6 +29,7 @@
 [ext_resource type="Texture2D" uid="uid://d2qmfjd5k2ndy" path="res://assets/characters/male/character_maleAdventurer_walk5.png" id="27_1feyn"]
 [ext_resource type="Texture2D" uid="uid://dpt5rslyc73sj" path="res://assets/characters/male/character_maleAdventurer_walk6.png" id="28_o2q24"]
 [ext_resource type="Texture2D" uid="uid://d2y025dw735b4" path="res://assets/characters/male/character_maleAdventurer_walk7.png" id="29_tbn6l"]
+[ext_resource type="AudioStream" uid="uid://c8unvgkodolkp" path="res://sounds/SFX/punch-2-166695.mp3" id="30_1jdoa"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_s0uqf"]
 animations = [{
@@ -181,7 +182,7 @@ size = Vector2(49, 86)
 [sub_resource type="CircleShape2D" id="CircleShape2D_ctcbv"]
 radius = 33.0606
 
-[node name="female" type="CharacterBody2D" groups=["enemy"]]
+[node name="male" type="CharacterBody2D" groups=["enemy"]]
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("1_0nnu4")
@@ -240,6 +241,9 @@ shape = SubResource("CircleShape2D_ctcbv")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 position = Vector2(1, -32)
+
+[node name="punch" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("30_1jdoa")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

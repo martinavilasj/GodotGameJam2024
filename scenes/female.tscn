@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://b4x2mow5a3ix"]
+[gd_scene load_steps=34 format=3 uid="uid://b4x2mow5a3ix"]
 
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_1m14w"]
 [ext_resource type="Texture2D" uid="uid://bu6qwjj31em2r" path="res://assets/characters/female/character_femalePerson_duck.png" id="2_wrq5o"]
@@ -29,6 +29,7 @@
 [ext_resource type="Texture2D" uid="uid://b0ky7ev62ccou" path="res://assets/characters/female/character_femalePerson_walk5.png" id="27_ayuvy"]
 [ext_resource type="Texture2D" uid="uid://brt5rkgn521s1" path="res://assets/characters/female/character_femalePerson_walk6.png" id="28_5hm6t"]
 [ext_resource type="Texture2D" uid="uid://cg8xuayti5mrw" path="res://assets/characters/female/character_femalePerson_walk7.png" id="29_arxbb"]
+[ext_resource type="AudioStream" uid="uid://c8unvgkodolkp" path="res://sounds/SFX/punch-2-166695.mp3" id="30_4e2y0"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_s0uqf"]
 animations = [{
@@ -240,6 +241,9 @@ shape = SubResource("CircleShape2D_ctcbv")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 position = Vector2(1, -32)
+
+[node name="punch" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("30_4e2y0")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

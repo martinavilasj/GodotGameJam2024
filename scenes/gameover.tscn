@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://dgm464y8cnwo0"]
+[gd_scene load_steps=10 format=3 uid="uid://dgm464y8cnwo0"]
 
 [ext_resource type="FontFile" uid="uid://dhnvtdywj2rrk" path="res://assets/fonts/PressStart2P-Regular.ttf" id="1_i8k2l"]
 [ext_resource type="Script" path="res://scripts/gameover.gd" id="1_lkfj1"]
+[ext_resource type="AudioStream" uid="uid://bdmvehwmpm5f5" path="res://sounds/SFX/videogame-death-sound-43894.mp3" id="3_qv0uc"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_xgeav"]
 font = ExtResource("1_i8k2l")
@@ -97,14 +98,15 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -443.0
-offset_top = -63.0
-offset_right = 445.0
-offset_bottom = -39.0
+offset_left = -444.0
+offset_top = -96.0
+offset_right = 444.0
+offset_bottom = -72.0
 grow_horizontal = 2
 grow_vertical = 0
-text = "PRESS ANY KEY TO RETURN TO  MAIN MENU"
+text = "PRESS ENTER TO RETURN TO  MAIN MENU"
 label_settings = SubResource("LabelSettings_tm58r")
+horizontal_alignment = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -127,3 +129,7 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "SCORE: "
 label_settings = SubResource("LabelSettings_btn3u")
+horizontal_alignment = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_qv0uc")

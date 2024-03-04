@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://l1guv4m423kt"]
+[gd_scene load_steps=23 format=3 uid="uid://l1guv4m423kt"]
 
 [ext_resource type="Texture2D" uid="uid://dnxn7s8cw60nm" path="res://assets/characters/robot/character_robot_idle.png" id="1_dlplm"]
 [ext_resource type="Script" path="res://scripts/robot.gd" id="1_why3v"]
@@ -18,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://b4wmgtmadmhop" path="res://assets/characters/robot/character_robot_drag.png" id="11_lw138"]
 [ext_resource type="Texture2D" uid="uid://6airrtqigiit" path="res://assets/characters/robot/character_robot_walk6.png" id="11_uxjfi"]
 [ext_resource type="Texture2D" uid="uid://kxdqfm6tx6vt" path="res://assets/characters/robot/character_robot_walk7.png" id="12_e8460"]
+[ext_resource type="AudioStream" uid="uid://cxxh5ldltk3nr" path="res://sounds/SFX/swing-whoosh-weapon-2-189822.mp3" id="19_r7yw8"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_2d1jg"]
 animations = [{
@@ -137,6 +138,9 @@ collision_mask = 3
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(1.5, 18)
 shape = SubResource("RectangleShape2D_4try3")
+
+[node name="throw" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("19_r7yw8")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

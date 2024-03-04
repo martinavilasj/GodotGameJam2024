@@ -3,8 +3,9 @@ extends Node
 var PLAYER_LIFES: int = 3
 var PLAYER_POINTS: int = 0
 
-var ENEMY_VELOCITY: int
-var ENEMY_ATTACK_VELOCITY: int
+var ENEMY_VELOCITY: int = 100
+var ENEMY_ATTACK_VELOCITY: int = 1.0
+var ENEMY_VISION = 300
 
 var menu_scene: String = "res://scenes/mainmenu.tscn"
 var game_scene: String = "res://scenes/level_1.tscn"
@@ -29,3 +30,6 @@ func game_over() -> void:
 func restart_game() -> void:
 	PLAYER_LIFES = 3
 	PLAYER_POINTS = 0
+	ENEMY_VELOCITY = 100
+	ENEMY_ATTACK_VELOCITY = 1.0
+	ENEMY_VISION = 300
