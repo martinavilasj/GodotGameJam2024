@@ -134,7 +134,6 @@ speed_scale = 0.4
 stream = ExtResource("4_r3aeq")
 volume_db = -5.0
 autoplay = true
-stream_paused = true
 
 [node name="start" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_rvq4g")
